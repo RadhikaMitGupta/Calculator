@@ -4,7 +4,7 @@ const Calculator = () => {
 const [input,setInput]=useState("")
 const  buttonRef=useRef(null)
     var arr=[1,2,3,4,5,6,7,8,9,0]
-    var arr2=['+','-','*','/',]
+    var arr2=['-','+','*','/',]
     const handleClick=(e)=>{
         setInput(input.concat(e.target.value))
     }
@@ -19,57 +19,57 @@ const  buttonRef=useRef(null)
         setInput(result(input))
     }
     function result(input){
-        var sum='';
-        let a=""
-        let b=0
-        var operation=""
-        for(var i=0;i<input.length;i++){
-            if(input[i]!=='+' && input[i]!=='-' && input[i]!=='*' && input[i]!=='/'){
-               sum+=input[i]
-            }
-            else if((input[i]==="+"  || input[i]==="-" || input[i]==="*" || input[i]==="/") && a===""){
-                  operation=input[i]
-                  a=sum
-                  sum=""
-              }
-            else if((input[i]==="+" || input[i]==="-" || input[i]==="*" || input[i]==="/") && a!==undefined){
-                if(operation==="+"){
-                    b=+a+(+sum)
-                }
-                else if(operation==="-"){
-                  b=+a-(+sum)
-              }
-            else if(operation==="*"){
-                  b=+a*(+sum)
-              }
-            else if(operation==="/"){
-                  b=+a/(+sum)
-              }
-              sum=""
-              a=b
-              operation=input[i]
-              
-            }
+      var sum='';
+      var res=0
+      let a=""
+      let b=0
+      var operation=""
+      for(var i=0;i<input.length;i++){
+          if(input[i]!='+' && input[i]!='-' && input[i]!='*' && input[i]!='/'){
+             sum+=input[i]
           }
-              if(operation==="+")
-            {
-              b=a+(+sum)
-            }
-              else if(operation==="-")
-            {
-              b=a-(+sum)
-            }
-            else if(operation==="*")
-            {
-              b=a*(+sum)
-            }
-            else if(operation==="/")
-            {
-              b=a/(+sum)
-            }
+         else if((input[i]=="+"  || input[i]=="-" || input[i]=="*" || input[i]=="/") && a==""){
+              operation=input[i]
+              a=sum
+              sum=""
+         }
+         else if(input[i]=="+" || input[i]=="-" || input[i]=="*" || input[i]=="/" && a!=undefined){
+             if(operation=="+"){
+                 b=+a+(+sum)
+             }
+             else if(operation=="-"){
+              b=+a-(+sum)
+          }
+         else if(operation=="*"){
+              b=+a*(+sum)
+          }
+         else if(operation=="/"){
+              b=+a/(+sum)
+          }
+          sum=""
+          a=b
+          operation=input[i]
           
-            return b;
+         }
       }
+      if(operation=="+")
+      {
+        b=(+a)+(+sum)
+      }
+      else if(operation=="-")
+      {
+        b=(+a)-(+sum)
+      }
+      else if(operation=="*")
+      {
+        b=(+a)*(+sum)
+      }
+      else if(operation=="/")
+      {
+        b=(+a)/(+sum)
+      }
+      return b
+  }
    const ThemeChange1=()=>{
       var body=  document.querySelector("body")
       body.style.color="white"
